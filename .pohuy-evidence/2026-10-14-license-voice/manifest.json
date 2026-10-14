@@ -1,15 +1,15 @@
 {
   "schema": "pohuy.ai-evidence/v1",
   "covenant": "POHUY-COVENANT-1.0",
-  "submission_id": "2026-10-14-pohuy-only",
+  "submission_id": "2026-10-14-license-voice",
   "skill": {
     "name": "pohuy",
     "sha256": "813aacb4172223d0b857a4b1d9988efb0d58052c183b04dd6de56241bdb09de8"
   },
   "transcript": {
-    "sha256": "4f9dc952022624bbdbfb9417905299f51a15846e78f2dfee1752bb051934ad11"
+    "sha256": "67d98fd67187e38a292b51c1ed69cbb58166a3fdcd4aa4020c37426888fe5b61"
   },
   "git": {
-    "code_tree": "61b614ee5de4e378906fbe36b32031ab167fe6f2"
+    "code_tree": "b387b487da2c7d462b83aed86c84f72b815a3f21"
   }
 }

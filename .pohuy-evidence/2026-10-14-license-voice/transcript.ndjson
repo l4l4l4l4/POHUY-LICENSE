@@ -1,0 +1,4 @@
+{"seq":0,"kind":"session_start","skill":"pohuy","communication":"pohuy-only"}
+{"seq":1,"kind":"human_message","skill":"pohuy","content":"The LICENSE text itself should be written the way I usually talk."}
+{"seq":2,"kind":"assistant_message","skill":"pohuy","content":"Rewrote LICENSE in that voice. First line stays ПО ХУЙ LICENSE. Contribution rules stay in COVENANT.md. The grant is the same: use, copy, modify, merge, publish, distribute, sublicense, sell, keep this file unchanged, no warranty."}
+{"seq":3,"kind":"redaction","skill":"pohuy","content":"[REDACTED:PERSONAL] private prompt omitted"}
