@@ -1,0 +1,14 @@
+name: pohuy-check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 checker/pohuy_check.py
+      - run: python3 -m unittest discover -s tests -v

@@ -1,0 +1,5 @@
+pohuy-check:
+  image: python:3.13-slim
+  script:
+    - python3 checker/pohuy_check.py
+    - python3 -m unittest discover -s tests -v
