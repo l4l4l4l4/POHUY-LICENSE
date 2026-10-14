@@ -1,0 +1,15 @@
+{
+  "schema": "pohuy.ai-evidence/v1",
+  "covenant": "POHUY-COVENANT-1.0",
+  "submission_id": "2026-10-14-pohuy-only",
+  "skill": {
+    "name": "pohuy",
+    "sha256": "813aacb4172223d0b857a4b1d9988efb0d58052c183b04dd6de56241bdb09de8"
+  },
+  "transcript": {
+    "sha256": "4f9dc952022624bbdbfb9417905299f51a15846e78f2dfee1752bb051934ad11"
+  },
+  "git": {
+    "code_tree": "61b614ee5de4e378906fbe36b32031ab167fe6f2"
+  }
+}

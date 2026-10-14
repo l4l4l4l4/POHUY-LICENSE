@@ -92,6 +92,31 @@ def check(repo) -> list[str]:
     return reasons
 
 
+def _communication_reasons(transcript: bytes) -> list[str]:
+    saw_pohuy = False
+    for raw in transcript.splitlines():
+        if not raw.strip():
+            continue
+        try:
+            event = json.loads(raw)
+        except json.JSONDecodeError:
+            return ["pohuy communication required"]
+        if not isinstance(event, dict):
+            return ["pohuy communication required"]
+        skill = event.get("skill")
+        if skill is not None and skill != "pohuy":
+            return ["pohuy communication required"]
+        if (
+            event.get("kind") == "session_start"
+            and skill == "pohuy"
+            and event.get("communication") == "pohuy-only"
+        ):
+            saw_pohuy = True
+    if not saw_pohuy:
+        return ["pohuy communication required"]
+    return []
+
+
 def _check_bundle(bundle: Path, expected_skill: str, expected_tree: str | None) -> list[str]:
     reasons: list[str] = []
     sid = bundle.name
@@ -130,8 +155,13 @@ def _check_bundle(bundle: Path, expected_skill: str, expected_tree: str | None) 
         reasons.append(f"{sid}: code tree mismatch")
 
     attestation = (bundle / "attestation.txt").read_text(encoding="utf-8")
-    if "pohuy skill loaded" not in attestation or "agent committed" not in attestation:
+    if (
+        "pohuy skill loaded" not in attestation
+        or "agent committed" not in attestation
+        or "pohuy communication only" not in attestation
+    ):
         reasons.append(f"{sid}: attestation incomplete")
+    reasons.extend(_communication_reasons(transcript))
     return reasons
 
 

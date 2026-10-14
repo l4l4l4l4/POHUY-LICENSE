@@ -36,13 +36,17 @@ def init_repo(repo: Path) -> None:
 
 
 def write_bundle(repo: Path, *, skill_sha: str, transcript: bytes, code_tree: str) -> None:
+    session = b'{"kind":"session_start","skill":"pohuy","communication":"pohuy-only"}\n'
+    if b'"skill":"other"' not in transcript and b'"communication":"pohuy-only"' not in transcript:
+        transcript = session + transcript
     bundle = repo / ".pohuy-evidence" / "sub-1"
     bundle.mkdir(parents=True)
     (bundle / "transcript.ndjson").write_bytes(transcript)
     (bundle / "summary.md").write_text("asked, did, mapped\n", encoding="utf-8")
     (bundle / "skill.lock").write_text(skill_sha + "\n", encoding="utf-8")
     (bundle / "attestation.txt").write_text(
-        "pohuy skill loaded\nagent committed\n", encoding="utf-8"
+        "pohuy skill loaded\nagent committed\npohuy communication only\n",
+        encoding="utf-8",
     )
     manifest = {
         "schema": "pohuy.ai-evidence/v1",
@@ -94,6 +98,22 @@ class BundleTest(unittest.TestCase):
             commit(repo)
             reasons = check(repo)
         self.assertIn("secret in transcript", reasons)
+
+    def test_communication_without_pohuy_fails(self):
+        with tempfile.TemporaryDirectory() as raw:
+            repo = Path(raw)
+            init_repo(repo)
+            git(repo, "add", "-A")
+            tree = git(repo, "write-tree")
+            write_bundle(
+                repo,
+                skill_sha=skill_digest(repo),
+                transcript=b'{"kind":"human_message"}\n{"kind":"assistant_message","skill":"other"}\n',
+                code_tree=tree,
+            )
+            commit(repo)
+            self.assertIn("pohuy communication required", check(repo))
+
 
     def test_valid_bundle_passes_and_tamper_fails(self):
         with tempfile.TemporaryDirectory() as raw:

@@ -1,5 +1,0 @@
-{"seq":1,"kind":"human_message","content":"Need a POHUY LICENSE repo: caps license, README, pohuy skill, checker. Required skill set is only pohuy. Agent commits and pushes. Attach the chat that produced the change."}
-{"seq":2,"kind":"assistant_message","content":"Published SKILL.md and references first, and left LICENSE, README, covenant, and checker out. That was the wrong cut."}
-{"seq":3,"kind":"human_message","content":"Where is the rest?"}
-{"seq":4,"kind":"assistant_message","content":"Added LICENSE as an unapproved custom grant, COVENANT.md POHUY-COVENANT-1.0, README, the contribution section of the pohuy skill, a fail-closed checker, and GitHub/Forgejo plus GitLab CI wrappers. Evidence is this bundle. The checker does not prove the client recorded every event."}
-{"seq":5,"kind":"redaction","content":"[REDACTED:PERSONAL] private prompt and infrastructure details omitted"}

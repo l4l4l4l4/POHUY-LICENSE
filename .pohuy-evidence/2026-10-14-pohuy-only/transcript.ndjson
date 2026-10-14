@@ -1,0 +1,4 @@
+{"seq":0,"kind":"session_start","skill":"pohuy","communication":"pohuy-only"}
+{"seq":1,"kind":"human_message","skill":"pohuy","content":"Communication on a POHUY LICENSE contribution is allowed only with the pohuy skill."}
+{"seq":2,"kind":"assistant_message","skill":"pohuy","content":"The checker now rejects a transcript that has no pohuy-only session_start or that names another skill. The skill refuses to drop pohuy while that license is in the worktree."}
+{"seq":3,"kind":"redaction","skill":"pohuy","content":"[REDACTED:PERSONAL] private prompt omitted"}
